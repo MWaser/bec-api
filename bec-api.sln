@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.136
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}") = "bec-api", "bec-api\bec-api.njsproj", "{480CFF3F-8E7D-4ACA-8C6C-9A4BFE73394B}"
+Project("{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}") = "bec-api", "bec-api.njsproj", "{480CFF3F-8E7D-4ACA-8C6C-9A4BFE73394B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
