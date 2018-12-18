@@ -1,6 +1,7 @@
 ﻿'use strict';
 var debug = require('debug');
 var express = require('express');
+var cors = require('cors');
 var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
@@ -8,15 +9,17 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
 var routes = require('./routes/index');
-var api = require('./routes/api');
+var users = require('./routes/users');
+var civic = require('./routes/civic');
 
 var tediousExpress = require('express4-tedious');
 var app = express();
+app.options('*', cors());
 var connection = {
     server: 'blockblox.database.windows.net',
-    userName: 'apiuser',
+    userName: 'bbuser',
     password: 'mayur4all!',
-    options: { encrypt: true, database: 'bec-db-dev' }
+    options: { encrypt: true, database: 'BECLtdDB-Dev' }
 };
 app.use(function (req, res, next) {
     req.sql = tediousExpress(connection);
@@ -36,7 +39,8 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
-app.use('/api', api);
+app.use('/users', users);
+app.use('/civic', civic);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
