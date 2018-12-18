@@ -8,15 +8,15 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
 var routes = require('./routes/index');
-var users = require('./routes/users');
+var api = require('./routes/api');
 
 var tediousExpress = require('express4-tedious');
 var app = express();
 var connection = {
     server: 'blockblox.database.windows.net',
-    userName: 'bbuser',
+    userName: 'apiuser',
     password: 'mayur4all!',
-    options: { encrypt: true, database: 'BECLtdDB-Dev' }
+    options: { encrypt: true, database: 'bec-db-dev' }
 };
 app.use(function (req, res, next) {
     req.sql = tediousExpress(connection);
@@ -36,7 +36,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
-app.use('/users', users);
+app.use('/api', api);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

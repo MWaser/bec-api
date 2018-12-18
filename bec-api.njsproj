@@ -34,7 +34,8 @@
   <ItemGroup>
     <Compile Include="app.js" />
     <Compile Include="routes\index.js" />
-    <Compile Include="routes\users.js" />
+    <Compile Include="routes\api.js" />
+    <Compile Include="routes\api\user.js" />
     <Compile Include="tests\scripts\UnitTest.js">
       <TestFramework>mocha</TestFramework>
     </Compile>
@@ -51,6 +52,7 @@
     <Folder Include="public\javascripts\" />
     <Folder Include="public\stylesheets\" />
     <Folder Include="routes\" />
+    <Folder Include="routes\api\" />
     <Folder Include="tests\" />
     <Folder Include="tests\scripts\" />
     <Folder Include="views\" />
