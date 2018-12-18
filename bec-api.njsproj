@@ -32,7 +32,6 @@
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="app - Copy.js" />
     <Compile Include="app.js" />
     <Compile Include="routes\civic.js" />
     <Compile Include="routes\index.js" />
