@@ -15,8 +15,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>480cff3f-8e7d-4aca-8c6c-9a4bfe73394b</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>
-    </StartupFile>
+    <StartupFile>app.js</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -34,6 +33,8 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="app - Copy.js" />
+    <Compile Include="app.js" />
+    <Compile Include="routes\civic.js" />
     <Compile Include="routes\index.js" />
     <Compile Include="routes\api.js" />
     <Compile Include="routes\api\user.js" />
