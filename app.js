@@ -1,6 +1,7 @@
 ﻿'use strict';
 var debug = require('debug');
 var express = require('express');
+var cors = require('cors');
 var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
@@ -13,6 +14,7 @@ var civic = require('./routes/civic');
 
 var tediousExpress = require('express4-tedious');
 var app = express();
+app.options('*', cors());
 var connection = {
     server: 'blockblox.database.windows.net',
     userName: 'bbuser',
