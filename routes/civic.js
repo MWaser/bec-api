@@ -10,13 +10,16 @@ const civicClient = civicSip.newClient({
 });
 
 router.get('/', function (req, res) {
-  res.send('Responding to GET request:  Use POST to send JWT.');
+  res.send('GET request received. Use POST to send JWT.');
 });
 
 router.post('/', function(req, res){
   var jwt = req.body.JWT;
   console.log('JWT: \'' + jwt + '\'');
-  civicClient.exchangeCode(jwt).then((x) => { res.send('exchanged JWT: ' + JSON.stringify(x, null, 4)); }).catch((error) => { console.log(error); res.send('ERR: ' + error);  });
+  civicClient.exchangeCode(jwt).then((x) => {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.send(JSON.stringify(x, null, 4));
+  }).catch((error) => { console.log(error); res.send('ERR: ' + error);  });
 });
 
 module.exports = router;
