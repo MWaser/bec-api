@@ -33,6 +33,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="app.js" />
+    <Compile Include="library\express4tediousX.js">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="routes\civic.js" />
     <Compile Include="routes\index.js" />
     <Compile Include="routes\api.js" />
@@ -48,6 +51,7 @@
     <Content Include="views\error.pug" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="library\" />
     <Folder Include="public\" />
     <Folder Include="public\images\" />
     <Folder Include="public\javascripts\" />

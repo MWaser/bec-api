@@ -12,7 +12,7 @@ var routes = require('./routes/index');
 var api = require('./routes/api');
 var civic = require('./routes/civic');
 
-var tediousExpress = require('express4-tedious');
+var tediousExpress = require('./library/express4tediousX');
 var app = express();
 app.options('*', cors());
 var connection = {
