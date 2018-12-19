@@ -15,24 +15,24 @@ userRouter.post('/register', function (req, res, next) {
 });
 
 userRouter.post('/chgpwd', function (req, res, next) {
-    req.sql("exec uspUserChgPwd @pEmail")
+    req.sql("exec uspUserChgPwd @pEmail, @pPassword, @pSession")
         .param('pEmail', req.body.email, tedious.TYPES.VarChar)
-        .param('pPassword', req.body.email, tedious.TYPES.VarChar)
-        .param('pSession', req.body.email, tedious.TYPES.VarChar)
+        .param('pPassword', req.body.password, tedious.TYPES.VarChar)
+        .param('pSession', req.body.session, tedious.TYPES.VarChar)
         .toStr(function (str) { res.send(str); });
 });
 
 userRouter.post('/login', function (req, res, next) {
-    req.sql("exec uspUserLogin @pEmail")
+    req.sql("exec uspUserLogin @pEmail, @pPassword")
         .param('pEmail', req.body.email, tedious.TYPES.VarChar)
-        .param('pPassword', req.body.email, tedious.TYPES.VarChar)
+        .param('pPassword', req.body.password, tedious.TYPES.VarChar)
         .toStr(function (str) { res.send(str); });
 });
 
 userRouter.post('/logout', function (req, res, next) {
-    req.sql("exec uspUserLogout @pEmail")
+    req.sql("exec uspUserLogout @pEmail, @pSession")
         .param('pEmail', req.body.email, tedious.TYPES.VarChar)
-        .param('pSession', req.body.email, tedious.TYPES.VarChar)
+        .param('pSession', req.body.session, tedious.TYPES.VarChar)
         .toStr(function (str) { res.send(str); });
 });
 
