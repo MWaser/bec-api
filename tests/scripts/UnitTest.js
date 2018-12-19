@@ -4,11 +4,12 @@ var tedious = require('tedious');
 var tediousExpress = require('../../library/express4tediousX');
 
 var config = {
+    server: 'blockblox.database.windows.net',
     userName: 'apiuser',
     password: 'mayur4all!',
-    server: 'blockblox.database.windows.net',
-    options: { encrypt: true, database: 'bec-db-dev', rowCollectionOnDone: true, rowCollectionOnRequestCompletion: true }
+    options: { encrypt: true, database: 'bec-db-dev' }
 };
+
 
 describe('Test Suite 1', function () {
     this.timeout(5000);
@@ -26,29 +27,11 @@ describe('Test Suite 1', function () {
     });
 
     it('Tedious-Express Check', function (done) {
-        console.log("TE!");
-        var Stream = require('stream');
-        var ws = new Stream;
-        ws.writable = true;
-        ws.bytes = 0;
-        ws.write = function (buf) {
-            console.log("*");
-            ws.bytes += buf.length;
-            console.log(buf);
-        };
-        ws.end = function (buf) {
-            console.log("***");
-            if (arguments.length) ws.write(buf);
-            ws.writable = false;
-            console.log('bytes length: ' + ws.bytes);
-        };
-
         this.timeout(5000);
-        console.log("TE!");
         var zap = tediousExpress(config);
-        zap("select * from Users FOR JSON PATH").into(ws);
-        console.log(ws);
-        console.log("TE!");
-        done();
+        zap("select * from Users FOR JSON PATH").toStr(function (str) {
+            console.log(str);
+            done();
+        });
     });
 });

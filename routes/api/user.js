@@ -4,7 +4,10 @@ var userRouter = express.Router();
 var tedious = require('tedious');
 
 userRouter.get('/', function (req, res, next) {
-    req.sql("select * from Users FOR JSON PATH").into(res);
+    req.sql("select * from Users FOR JSON PATH").toStr(function (str) {
+        console.log(str);
+        res.send(str);
+    });
 });
 
 userRouter.post('/register', function (req, res, next) {
