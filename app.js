@@ -10,7 +10,6 @@ var bodyParser = require('body-parser');
 
 var routes = require('./routes/index');
 var api = require('./routes/api');
-var civic = require('./routes/civic');
 
 var tediousExpress = require('./library/express4tediousX');
 var app = express();
@@ -40,7 +39,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
 app.use('/api', api);
-app.use('/civic', civic);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

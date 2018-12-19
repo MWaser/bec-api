@@ -1,4 +1,4 @@
-'use strict';
+//'use strict';
 var express = require('express');
 var router = express.Router();
 const civicSip = require('civic-sip-api');
