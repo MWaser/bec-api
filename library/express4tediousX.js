@@ -53,6 +53,9 @@ function tediousExpress(config){
                 };
                 this.into(ws);
             },
+            toObj: function (cb) {
+                this.toStr(function (str) { cb(JSON.parse(str)); });
+            },
             __ExecuteRequest: function(request, ostream) {
                 var self = this;
                 this.connection.on('connect', function (err) {

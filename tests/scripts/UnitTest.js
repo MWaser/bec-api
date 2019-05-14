@@ -1,37 +1,34 @@
-﻿var assert = require('assert');
-var debug = require('debug');
-var tedious = require('tedious');
-var tediousExpress = require('../../library/express4tediousX');
-
-var config = {
-    server: 'blockblox.database.windows.net',
-    userName: 'apiuser',
-    password: 'mayur4all!',
-    options: { encrypt: true, database: 'bec-db-dev' }
-};
-
+﻿'use strict';
+const assert = require('assert');
+// const axios = require('axios');
+const config = require('../../library/config');
+const tedious = require('tedious');
+const twisedb = require('../../routes/api/twisedb');
+const userdb = require('../../routes/api/userdb');
 
 describe('Test Suite 1', function () {
-    this.timeout(5000);
-    it('Mocha Check', function () {
-        assert.ok(true, "This shouldn't fail");
+    this.timeout(10000);
+
+    it('00-Mocha Check', function () { assert.ok(true, "This shouldn't fail"); });
+
+    it('01-TWise Check', function (done) {
+        twisedb.createSS('usd', (obj) => { console.log(JSON.stringify(obj)); done(); });
     });
 
-    it('DB Conn Check', function (done) {
-        this.timeout(5000);
-        var connection = new tedious.Connection(config);
+    it('11-DB Conn Check', function (done) {
+        this.timeout(10000);
+        var connection = new tedious.Connection(config.apiDbConn);
         connection.on('connect', function (err) {
             if (err) done(err); else done();
             connection.close();
         });
     });
 
-    it('Tedious-Express Check', function (done) {
-        this.timeout(5000);
-        var zap = tediousExpress(config);
-        zap("select * from Users FOR JSON PATH").toStr(function (str) {
-            console.log(str);
-            done();
-        });
+    it('12-Transactions Check', function (done) {
+        this.timeout(10000);
+        userdb.getTxTotals((obj) => { console.log(JSON.stringify(obj)); done(); });
     });
+
 });
+
+

@@ -259,3 +259,6 @@ paket-files/
 # Python Tools for Visual Studio (PTVS)
 __pycache__/
 *.pyc
+/routes/api/eur.csv
+/routes/api/usd.csv
+/routes/api/users.csv

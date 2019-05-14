@@ -8,6 +8,7 @@
     <LastActiveSolutionConfig>Debug|Any CPU</LastActiveSolutionConfig>
     <JavaScriptTestFramework>mocha</JavaScriptTestFramework>
     <SaveNodeJsSettingsInProjectFile>True</SaveNodeJsSettingsInProjectFile>
+    <LaunchUrl>http://localhost</LaunchUrl>
   </PropertyGroup>
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -22,7 +23,7 @@
     <OutputPath>.</OutputPath>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <ProjectTypeGuids>{3AF33F2E-1136-4D97-BBB7-1795711AC8B8};{349c5851-65df-11da-9384-00065b846f21};{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}</ProjectTypeGuids>
-    <NodejsPort>1337</NodejsPort>
+    <NodejsPort>3000</NodejsPort>
     <StartWebBrowser>True</StartWebBrowser>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
@@ -33,36 +34,77 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="app.js" />
+    <Compile Include="build\precache-manifest.424f353800d8658d378de44aeef1ad5d.js" />
+    <Compile Include="build\service-worker.js" />
+    <Compile Include="build\static\js\1.9f0d1396.chunk.js" />
+    <Compile Include="build\static\js\main.aceceb15.chunk.js" />
+    <Compile Include="build\static\js\runtime~main.229c360f.js" />
+    <Compile Include="library\config.js">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="library\express4tediousX.js">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="routes\civic.js" />
-    <Compile Include="routes\index.js" />
     <Compile Include="routes\api.js" />
+    <Compile Include="routes\api\docusign.js" />
+    <Compile Include="routes\api\admin.js" />
+    <Compile Include="routes\api\log.js" />
+    <Compile Include="routes\api\sendgrid.js" />
+    <Compile Include="routes\api\twisedb.js" />
     <Compile Include="routes\api\user.js" />
+    <Compile Include="routes\api\userdb.js">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="tests\scripts\UnitTest.js">
       <TestFramework>mocha</TestFramework>
     </Compile>
+    <Content Include="build\asset-manifest.json" />
+    <Content Include="build\favicon.png" />
+    <Content Include="build\index.html" />
+    <Content Include="build\manifest.json" />
+    <Content Include="build\static\css\1.4c37bde5.chunk.css" />
+    <Content Include="build\static\css\1.4c37bde5.chunk.css.map" />
+    <Content Include="build\static\css\main.18e047b4.chunk.css" />
+    <Content Include="build\static\css\main.18e047b4.chunk.css.map" />
+    <Content Include="build\static\js\1.9f0d1396.chunk.js.map" />
+    <Content Include="build\static\js\main.aceceb15.chunk.js.map" />
+    <Content Include="build\static\js\runtime~main.229c360f.js.map" />
+    <Content Include="build\static\media\David_Niebauer.c823d32f.jpg" />
+    <Content Include="build\static\media\footer-bg.c45ad7b0.jpg" />
+    <Content Include="build\static\media\header-img.12687365.jpg" />
+    <Content Include="build\static\media\marco.41663ae4.png" />
+    <Content Include="build\static\media\projection.8b93ea7d.svg" />
+    <Content Include="build\static\media\shar.3dd71b12.png" />
+    <Content Include="build\static\media\team-img-1.8b31155d.png" />
+    <Content Include="build\static\media\team-img-2.b353bb93.png" />
+    <Content Include="build\static\media\team-img-4.dab9b09c.png" />
+    <Content Include="build\static\media\team-img-5.ab3da3ea.png" />
+    <Content Include="library\docusign-prodkey.txt" />
+    <Content Include="library\docusign-devkey.txt" />
     <Content Include="package.json" />
-    <Content Include="public\stylesheets\main.css" />
+    <Content Include="public\BECPrivacyPolicy.pdf" />
+    <Content Include="public\BECTermsOfService.pdf" />
+    <Content Include="public\BrillouinSummary.pdf" />
+    <Content Include="public\bsdunitsaleagreement.pdf" />
+    <Content Include="public\google612b30f7d9c0e274.html" />
+    <Content Include="public\seriesdstockdesignation.pdf" />
     <Content Include="README.md" />
-    <Content Include="views\index.pug" />
-    <Content Include="views\layout.pug" />
-    <Content Include="views\error.pug" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="build\" />
+    <Folder Include="build\static\" />
+    <Folder Include="build\static\css\" />
+    <Folder Include="build\static\js\" />
+    <Folder Include="build\static\media\" />
     <Folder Include="library\" />
     <Folder Include="public\" />
-    <Folder Include="public\images\" />
-    <Folder Include="public\javascripts\" />
-    <Folder Include="public\stylesheets\" />
     <Folder Include="routes\" />
     <Folder Include="routes\api\" />
     <Folder Include="tests\" />
     <Folder Include="tests\scripts\" />
-    <Folder Include="views\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="tests\scripts\private.key" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config" />
   </ItemGroup>

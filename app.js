@@ -3,76 +3,32 @@ var debug = require('debug');
 var express = require('express');
 var cors = require('cors');
 var path = require('path');
-var favicon = require('serve-favicon');
-var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+const config = require('./library/config.js');
 
-var routes = require('./routes/index');
-var api = require('./routes/api');
-
-var tediousExpress = require('./library/express4tediousX');
 var app = express();
 app.options('*', cors());
-var connection = {
-    server: 'blockblox.database.windows.net',
-    userName: 'apiuser',
-    password: 'mayur4all!',
-    options: { encrypt: true, database: 'bec-db-dev' }
-};
-app.use(function (req, res, next) {
-    req.sql = tediousExpress(connection);
-    next();
-});
+app.use(function(req, res, next) { res.header('Access-Control-Allow-Origin', '*'); next(); });
 
-// view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'pug');
-
-// uncomment after placing your favicon in /public
-//app.use(favicon(__dirname + '/public/favicon.ico'));
-app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'build'), { setHeaders: function (res, path, stat) { res.set('Set-Cookie', "env=" + config.reactEnv + ";Path=/"); } }));
 
-app.use('/', routes);
-app.use('/api', api);
+var api = require('./routes/api');
+app.use('/api/', api);
+app.get('/', function (req, res) { res.sendFile('index.html', { root: './build' }); });
+app.get('/us', function (req, res) { res.sendFile('index.html', { root: './build' }); });
+app.get('/us/*', function (req, res) { res.sendFile('index.html', { root: './build' }); });
+app.get('/nonus', function (req, res) { res.sendFile('index.html', { root: './build' }); });
+app.get('/nonus/*', function (req, res) { res.sendFile('index.html', { root: './build' }); });
+app.get('/admin', function (req, res) { res.sendFile('index.html', { root: './build' }); });
+app.get('/admin/*', function (req, res) { res.sendFile('index.html', { root: './build' }); });
 
-// catch 404 and forward to error handler
-app.use(function (req, res, next) {
-    var err = new Error('Not Found');
-    err.status = 404;
-    next(err);
-});
-
-// error handlers
-
-// development error handler
-// will print stacktrace
-if (app.get('env') === 'development') {
-    app.use(function (err, req, res, next) {
-        res.status(err.status || 500);
-        res.render('error', {
-            message: err.message,
-            error: err
-        });
-    });
-}
-
-// production error handler
-// no stacktraces leaked to user
-app.use(function (err, req, res, next) {
-    res.status(err.status || 500);
-    res.render('error', {
-        message: err.message,
-        error: {}
-    });
-});
+app.use(function (req, res, next) { res.status(404); res.send('ERROR: Not Found'); next(err); });
+app.use(function (err, req, res, next) { console.log('non-dev Error: ' + JSON.stringify(err)); });
 
 app.set('port', process.env.PORT || 3000);
-
-var server = app.listen(app.get('port'), function () {
-    debug('Express server listening on port ' + server.address().port);
-});
+var server = app.listen(app.get('port'), function () { debug('Express server listening on port ' + server.address().port); });
